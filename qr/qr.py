@@ -1,113 +1,141 @@
 import reflex as rx
+from reflex import State
+import requests
+import qr.styles.styles as styles
 
-class Estado(rx.State):
-    mostrar_qr_grande: bool = False
-
+# @rx.page(route="/[nameQR]", title="Tarjeta QR")
+class Estado(State):
+    nombre: str = "Cargando..."
+    email: str = ""
+    telefono: str = ""
+    departamento: str = ""
+    posicion: str = ""
+    QR : str
+    async def cargar_nombre(self):
+        try:
+            response = requests.get(
+                f"https://fichaje.ideasmedioambientales.com/api/getQR/{self.nameQR}"
+            )
+            print(response.url)
+            print(f"Respuesta HTTP = {response.status_code}")
+            if response.status_code == 200:
+                data = response.json()
+                print(f"Respuesta JSON = {data}")
+                self.nombre = data.get("name", "Nombre no encontrado")
+                self.email = data.get("email", "Email no encontrado")
+                self.telefono = data.get("phone", "Teléfono no encontrado")
+                self.departamento = data.get("department", "Departamento no encontrado")
+                self.posicion = data.get("position_department", "Posición no encontrada")
+                self.QR = data.get("nameQR", "QR no encontrado")
+            else:
+                self.nombre = f"Error HTTP {response.status_code}"
+                self.email = f"Error HTTP {response.status_code}"
+                self.telefono = f"Error HTTP {response.status_code}"
+                self.departamento = f"Error HTTP {response.status_code}"
+                self.posicion = f"Error HTTP {response.status_code}"
+        except Exception as e:
+            print(f"Excepción al cargar: {e}")
+            self.nombre = "Error al cargar"
+            self.email = "Error al cargar"
+            self.telefono = "Error al cargar"
+            self.departamento = "Error al cargar"
+            self.posicion = "Error al cargar"
+            
 def tarjeta():
     return rx.box(
         # Contenedor general
         rx.vstack(
             # Logo fijo arriba
-            rx.image(src="Logotipo.png", width="90%", margin_top="10px"),
-            
+            rx.image(src="/Logotipo.png", width="90%", margin_top="10px"), 
             # Contenedor animado
             rx.box(
-                rx.cond(
-                    Estado.mostrar_qr_grande,
-                    # Vista del QR en grande
-                    rx.vstack(
-                        rx.image(
-                            src="output.png",
-                            width="250px",
-                            cursor="pointer",
-                            border_radius="10px",
-                            box_shadow="lg",
-                            on_click=lambda: Estado.set_mostrar_qr_grande(False)
-                        ),
-                        rx.text(
-                            "JUAN JOSÉ SEGUÍ BORJA",
-                            font_size="22px",
-                            font_weight="bold",
-                            color="#3C403E",
-                            margin_top="10px"
-                        ),
-                        rx.badge("Developer",
-                            background_color="#86A789",
-                            padding="6px 15px",
-                            border_radius="8px",
-                            color="#F1F1F1",
-                            font_size="14px"
-                        ),
-                        rx.hstack(
-                            rx.image("email.svg"),
-                            rx.text("jjsegui@ideasmedioambientales.com", font_size="16px", color="#3C403E"),
-                            spacing="2",
-                            align_items="center"
-                        ),
-                        rx.hstack(
-                            rx.image("phone.svg"),
-                            rx.text("+34 647 71 85 85", font_size="16px", color="#3C403E"),
-                            spacing="2",
-                            align_items="center"
-                        ),
-                        height="100%",
-                        width="100%",
-                        display="flex",
-                        justify_content="center",
-                        align_items="center",
-                        transition="all 0.5s ease-in-out"
+                rx.vstack(
+                    rx.image(
+                        src=f"/images/employees/empleado_{Estado.QR}.png",
+                        border_radius="10px", 
+                        width="180px", 
+                        height="180px", 
+                        object_fit="cover",
+                        border="3px solid #86A789",
+                        box_shadow="md"
                     ),
-                    # Vista normal
-                    rx.vstack(
-                        rx.image(
-                            src="unnamed.jpg",
-                            border_radius="10px", 
-                            width="180px", 
-                            height="180px", 
-                            object_fit="cover",
-                            border="3px solid #86A789",
-                            box_shadow="md"
+                    rx.text(
+                        Estado.nombre,
+                        font_size="22px",
+                        font_weight="bold",
+                        color="#3C403E",
+                        margin_top="10px"
+                    ),
+                    rx.badge(
+                        rx.vstack(
+                            rx.text(Estado.posicion),
+                            spacing="0",  
+                            align_items="center" 
                         ),
-                        rx.text(
-                            "JUAN JOSÉ SEGUÍ BORJA",
-                            font_size="22px",
-                            font_weight="bold",
-                            color="#3C403E",
-                            margin_top="10px"
-                        ),
-                        rx.badge("Developer",
-                            background_color="#86A789",
-                            padding="6px 15px",
-                            border_radius="8px",
-                            color="#F1F1F1",
-                            font_size="14px"
-                        ),
+                        background_color="#86A789",
+                        padding="6px 15px",
+                        border_radius="8px",
+                        color="#F1F1F1",
+                        font_size="14px"
+                    ),
+                    rx.hstack(
+                        rx.image("/email.svg"),
+                        rx.text(Estado.email, font_size="16px", color="#3C403E"),
+                        spacing="2",
+                        align_items="center"
+                    ),
+                    rx.hstack(
+                        rx.image("/phone.svg"),
+                        rx.text(Estado.telefono, font_size="16px", color="#3C403E"),
+                        spacing="2",
+                        align_items="center"
+                    ),
+                    rx.link(
                         rx.hstack(
-                            rx.image("email.svg"),
-                            rx.text("jjsegui@ideasmedioambientales.com", font_size="16px", color="#3C403E"),
-                            spacing="2",
-                            align_items="center"
-                        ),
-                        rx.hstack(
-                            rx.image("phone.svg"),
-                            rx.text("+34 647 71 85 85", font_size="16px", color="#3C403E"),
-                            spacing="2",
-                            align_items="center"
-                        ),
-                        rx.box(
                             rx.image(
-                                src="output.png",
-                                width="90px",
-                                cursor="pointer",
-                                border_radius="10px",
-                                box_shadow="lg",
+                                src="/web.svg",
+                                width="20px",  # Ajusta el tamaño según necesites
+                                height="20px",
+                                margin_right="8px"  # Espacio entre icono y texto
                             ),
-                            padding="10px",
-                            on_click=lambda: Estado.set_mostrar_qr_grande(True)
+                            rx.text(
+                                "www.ideasmedioambientales.com", 
+                                font_size="16px", 
+                                color="#3C403E"
+                            ),
+                            align_items="center",  # Centra verticalmente
+                            spacing="0"  # Elimina espacio adicional
                         ),
-                        spacing="4",
-                        align_items="center",
-                        transition="all 0.5s ease-in-out"
+                        href="https://ideasmedioambientales.com",
+                        is_external=True,  # Para que abra en nueva pestaña
+                        _hover={"text_decoration": "none"}  # Opcional: quita subrayado al pasar el mouse
+                    ),  
+                    rx.hstack(
+                        rx.image("/home.svg"),
+                        rx.vstack(
+                            rx.text("Calle San Sebastian 19", font_size="16px", color="#3C403E"),
+                            rx.text("02005 Albacete", font_size="16px", color="#3C403E" ),
+                            align_items="center",
+                            spacing="0",
+                        ),
+                        align_items="center"
+                    ),
+                    rx.badge(
+                        rx.link("Guardar Contacto", 
+                                href=f"https://fichaje.ideasmedioambientales.com/qr/vcard/{Estado.QR}",                            
+                                is_external=True,  # Para que abra en nueva pestaña
+                                _hover={"text_decoration": "none"} 
+                                ),
+                        spacing="0",  
+                        background_color="#86A789",
+                        padding="6px 15px",
+                        border_radius="8px",
+                        color="#F1F1F1",
+                        font_size="14px"
+                    ),
+                    spacing="3",
+                    align_items="center",
+                    transition="all 0.5s ease-in-out"
                     )
                 ),
                 height="100%",
@@ -117,26 +145,23 @@ def tarjeta():
                 align_items="center",
                 transition="all 0.5s ease-in-out"
             ),
-        ),
         padding="20px",
         background_color="#F1F1F1",
         border_radius="18px",
         box_shadow="lg",
-        width="375px",  
-        height="667px",  
+        width="376px",  
+        height="700px",  
         display="flex",
         flex_direction="column",
         justify_content="flex-start",
         align_items="center",
     )
-
-def index() -> rx.Component:
+@rx.page(route="/[nameQR]")
+def index(nameQR: str = "") -> rx.Component:
     return rx.box(
-        # Contenedor general con imagen de fondo
         rx.fragment(
-            # Imagen de fondo ocupando toda la pantalla
             rx.image(
-                src="Imagen4.png",  # Cambia esto por tu imagen real
+                src="/Imagen4.png",
                 position="absolute",
                 top="0",
                 left="0",
@@ -145,7 +170,6 @@ def index() -> rx.Component:
                 object_fit="cover",
                 z_index="0",
             ),
-            # Tarjeta centrada por encima
             rx.center(
                 tarjeta(),
                 style={
@@ -163,10 +187,13 @@ def index() -> rx.Component:
             "backgroundColor": "#3E665C",
             "height": "100vh",
             "overflow": "hidden",
-            "fontFamily": "Poppins, sans-serif"
-        }
+            "fontFamily": "Poppins, sans-serif",
+        },
+        on_mount=lambda: Estado.cargar_nombre(nameQR)
     )
 
 
-app = rx.App()
+app = rx.App(
+    stylesheets=styles.STYLESHEET,
+)
 app.add_page(index)
