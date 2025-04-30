@@ -1,11 +1,7 @@
 import { createContext, useContext, useMemo, useReducer, useState } from "react"
 import { applyDelta, Event, hydrateClientStorage, useEventLoop, refs } from "$/utils/state.js"
 
-<<<<<<< HEAD
-export const initialState = {"reflex___state____state": {"is_hydrated": false, "nameQR": "", "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "cookie": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": "", "raw_headers": {}}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}}, "reflex___state____state.reflex___state____on_load_internal_state": {}, "reflex___state____state.qr___qr____estado": {"QR": "", "departamento": "", "email": "", "nombre": "Cargando...", "posicion": "", "telefono": ""}, "reflex___state____state.reflex___state____frontend_event_exception_state": {}, "reflex___state____state.reflex___state____update_vars_internal_state": {}}
-=======
-export const initialState = {"reflex___state____state": {"is_hydrated": false, "nameQR": "", "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "cookie": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": "", "raw_headers": {}}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}}, "reflex___state____state.reflex___state____update_vars_internal_state": {}, "reflex___state____state.reflex___state____frontend_event_exception_state": {}, "reflex___state____state.reflex___state____on_load_internal_state": {}, "reflex___state____state.qr___qr____estado": {"QR": "", "departamento": "", "email": "", "nombre": "Cargando...", "posicion": "", "telefono": ""}}
->>>>>>> ae32bebbff67230a0364951821de323e541272dd
+export const initialState = {"reflex___state____state": {"is_hydrated": false, "nameQR": "", "router": {"session": {"client_token": "", "client_ip": "", "session_id": ""}, "headers": {"host": "", "origin": "", "upgrade": "", "connection": "", "cookie": "", "pragma": "", "cache_control": "", "user_agent": "", "sec_websocket_version": "", "sec_websocket_key": "", "sec_websocket_extensions": "", "accept_encoding": "", "accept_language": "", "raw_headers": {}}, "page": {"host": "", "path": "", "raw_path": "", "full_path": "", "full_raw_path": "", "params": {}}}}, "reflex___state____state.reflex___state____frontend_event_exception_state": {}, "reflex___state____state.reflex___state____update_vars_internal_state": {}, "reflex___state____state.reflex___state____on_load_internal_state": {}, "reflex___state____state.qr___qr____estado": {"QR": "", "departamento": "", "email": "", "nombre": "Cargando...", "posicion": "", "telefono": ""}}
 
 export const defaultColorMode = "system"
 export const ColorModeContext = createContext(null);
@@ -13,17 +9,10 @@ export const UploadFilesContext = createContext(null);
 export const DispatchContext = createContext(null);
 export const StateContexts = {
   reflex___state____state: createContext(null),
-<<<<<<< HEAD
-  reflex___state____state__reflex___state____on_load_internal_state: createContext(null),
-  reflex___state____state__qr___qr____estado: createContext(null),
   reflex___state____state__reflex___state____frontend_event_exception_state: createContext(null),
   reflex___state____state__reflex___state____update_vars_internal_state: createContext(null),
-=======
-  reflex___state____state__reflex___state____update_vars_internal_state: createContext(null),
-  reflex___state____state__reflex___state____frontend_event_exception_state: createContext(null),
   reflex___state____state__reflex___state____on_load_internal_state: createContext(null),
   reflex___state____state__qr___qr____estado: createContext(null),
->>>>>>> ae32bebbff67230a0364951821de323e541272dd
 }
 export const EventLoopContext = createContext(null);
 export const clientStorage = {"cookies": {}, "local_storage": {}, "session_storage": {}}
@@ -63,11 +52,7 @@ export const initialEvents = () => [
 
 export const isDevMode = false
 
-<<<<<<< HEAD
-export const lastCompiledTimeStamp = "2025-04-30 17:15:52.610392"
-=======
-export const lastCompiledTimeStamp = "2025-04-30 16:17:21.290031"
->>>>>>> ae32bebbff67230a0364951821de323e541272dd
+export const lastCompiledTimeStamp = "2025-04-30 17:28:48.005903"
 
 export function UploadFilesProvider({ children }) {
   const [filesById, setFilesById] = useState({})
@@ -99,51 +84,24 @@ export function EventLoopProvider({ children }) {
 
 export function StateProvider({ children }) {
   const [reflex___state____state, dispatch_reflex___state____state] = useReducer(applyDelta, initialState["reflex___state____state"])
-<<<<<<< HEAD
-  const [reflex___state____state__reflex___state____on_load_internal_state, dispatch_reflex___state____state__reflex___state____on_load_internal_state] = useReducer(applyDelta, initialState["reflex___state____state.reflex___state____on_load_internal_state"])
-  const [reflex___state____state__qr___qr____estado, dispatch_reflex___state____state__qr___qr____estado] = useReducer(applyDelta, initialState["reflex___state____state.qr___qr____estado"])
   const [reflex___state____state__reflex___state____frontend_event_exception_state, dispatch_reflex___state____state__reflex___state____frontend_event_exception_state] = useReducer(applyDelta, initialState["reflex___state____state.reflex___state____frontend_event_exception_state"])
   const [reflex___state____state__reflex___state____update_vars_internal_state, dispatch_reflex___state____state__reflex___state____update_vars_internal_state] = useReducer(applyDelta, initialState["reflex___state____state.reflex___state____update_vars_internal_state"])
-  const dispatchers = useMemo(() => {
-    return {
-      "reflex___state____state": dispatch_reflex___state____state,
-      "reflex___state____state.reflex___state____on_load_internal_state": dispatch_reflex___state____state__reflex___state____on_load_internal_state,
-      "reflex___state____state.qr___qr____estado": dispatch_reflex___state____state__qr___qr____estado,
-      "reflex___state____state.reflex___state____frontend_event_exception_state": dispatch_reflex___state____state__reflex___state____frontend_event_exception_state,
-      "reflex___state____state.reflex___state____update_vars_internal_state": dispatch_reflex___state____state__reflex___state____update_vars_internal_state,
-=======
-  const [reflex___state____state__reflex___state____update_vars_internal_state, dispatch_reflex___state____state__reflex___state____update_vars_internal_state] = useReducer(applyDelta, initialState["reflex___state____state.reflex___state____update_vars_internal_state"])
-  const [reflex___state____state__reflex___state____frontend_event_exception_state, dispatch_reflex___state____state__reflex___state____frontend_event_exception_state] = useReducer(applyDelta, initialState["reflex___state____state.reflex___state____frontend_event_exception_state"])
   const [reflex___state____state__reflex___state____on_load_internal_state, dispatch_reflex___state____state__reflex___state____on_load_internal_state] = useReducer(applyDelta, initialState["reflex___state____state.reflex___state____on_load_internal_state"])
   const [reflex___state____state__qr___qr____estado, dispatch_reflex___state____state__qr___qr____estado] = useReducer(applyDelta, initialState["reflex___state____state.qr___qr____estado"])
   const dispatchers = useMemo(() => {
     return {
       "reflex___state____state": dispatch_reflex___state____state,
-      "reflex___state____state.reflex___state____update_vars_internal_state": dispatch_reflex___state____state__reflex___state____update_vars_internal_state,
       "reflex___state____state.reflex___state____frontend_event_exception_state": dispatch_reflex___state____state__reflex___state____frontend_event_exception_state,
+      "reflex___state____state.reflex___state____update_vars_internal_state": dispatch_reflex___state____state__reflex___state____update_vars_internal_state,
       "reflex___state____state.reflex___state____on_load_internal_state": dispatch_reflex___state____state__reflex___state____on_load_internal_state,
       "reflex___state____state.qr___qr____estado": dispatch_reflex___state____state__qr___qr____estado,
->>>>>>> ae32bebbff67230a0364951821de323e541272dd
     }
   }, [])
 
   return (
     <StateContexts.reflex___state____state value={ reflex___state____state }>
-<<<<<<< HEAD
-    <StateContexts.reflex___state____state__reflex___state____on_load_internal_state value={ reflex___state____state__reflex___state____on_load_internal_state }>
-    <StateContexts.reflex___state____state__qr___qr____estado value={ reflex___state____state__qr___qr____estado }>
     <StateContexts.reflex___state____state__reflex___state____frontend_event_exception_state value={ reflex___state____state__reflex___state____frontend_event_exception_state }>
     <StateContexts.reflex___state____state__reflex___state____update_vars_internal_state value={ reflex___state____state__reflex___state____update_vars_internal_state }>
-      <DispatchContext value={dispatchers}>
-        {children}
-      </DispatchContext>
-    </StateContexts.reflex___state____state__reflex___state____update_vars_internal_state>
-    </StateContexts.reflex___state____state__reflex___state____frontend_event_exception_state>
-    </StateContexts.reflex___state____state__qr___qr____estado>
-    </StateContexts.reflex___state____state__reflex___state____on_load_internal_state>
-=======
-    <StateContexts.reflex___state____state__reflex___state____update_vars_internal_state value={ reflex___state____state__reflex___state____update_vars_internal_state }>
-    <StateContexts.reflex___state____state__reflex___state____frontend_event_exception_state value={ reflex___state____state__reflex___state____frontend_event_exception_state }>
     <StateContexts.reflex___state____state__reflex___state____on_load_internal_state value={ reflex___state____state__reflex___state____on_load_internal_state }>
     <StateContexts.reflex___state____state__qr___qr____estado value={ reflex___state____state__qr___qr____estado }>
       <DispatchContext value={dispatchers}>
@@ -151,9 +109,8 @@ export function StateProvider({ children }) {
       </DispatchContext>
     </StateContexts.reflex___state____state__qr___qr____estado>
     </StateContexts.reflex___state____state__reflex___state____on_load_internal_state>
-    </StateContexts.reflex___state____state__reflex___state____frontend_event_exception_state>
     </StateContexts.reflex___state____state__reflex___state____update_vars_internal_state>
->>>>>>> ae32bebbff67230a0364951821de323e541272dd
+    </StateContexts.reflex___state____state__reflex___state____frontend_event_exception_state>
     </StateContexts.reflex___state____state>
   )
 }
