@@ -51,7 +51,7 @@ def tarjeta():
             rx.box(
                 rx.vstack(
                     rx.image(
-                        src=f"/images/employees/empleado_{Estado.QR}.png",
+                        src=f"https://fichaje.ideasmedioambientales.com/images/employees/empleado_{Estado.QR}.png",
                         border_radius="10px", 
                         width="180px", 
                         height="180px", 
