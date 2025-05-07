@@ -1,16 +1,16 @@
 import reflex as rx
-from reflex import State
 import requests
 import qr.styles.styles as styles
 
 # @rx.page(route="/[nameQR]", title="Tarjeta QR")
-class Estado(State):
+class Estado(rx.State):
     nombre: str = "Cargando..."
     email: str = ""
     telefono: str = ""
     departamento: str = ""
     posicion: str = ""
     QR : str
+    avatar = "" 
     async def cargar_nombre(self):
         try:
             response = requests.get(
@@ -27,12 +27,15 @@ class Estado(State):
                 self.departamento = data.get("department", "Departamento no encontrado")
                 self.posicion = data.get("position_department", "Posición no encontrada")
                 self.QR = data.get("nameQR", "QR no encontrado")
+                self.avatar = f"https://fichaje.ideasmedioambientales.com/images/employees/empleado_{self.nameQR}.png"
+
             else:
                 self.nombre = f"Error HTTP {response.status_code}"
                 self.email = f"Error HTTP {response.status_code}"
                 self.telefono = f"Error HTTP {response.status_code}"
                 self.departamento = f"Error HTTP {response.status_code}"
                 self.posicion = f"Error HTTP {response.status_code}"
+                self.avatar = f"Error HTTP {response.status_code}"
         except Exception as e:
             print(f"Excepción al cargar: {e}")
             self.nombre = "Error al cargar"
@@ -51,7 +54,7 @@ def tarjeta():
             rx.box(
                 rx.vstack(
                     rx.image(
-                        src=f"/images/employees/empleado_{Estado.QR}.png",
+                        src=Estado.avatar,
                         border_radius="10px", 
                         width="180px", 
                         height="180px", 
