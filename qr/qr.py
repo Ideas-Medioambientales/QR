@@ -11,38 +11,38 @@ class Estado(rx.State):
     posicion: str = ""
     QR : str
     avatar = "" 
-    async def cargar_nombre(self):
-        try:
-            response = requests.get(
-                f"https://fichaje.ideasmedioambientales.com/api/getQR/{self.nameQR}"
-            )
-            print(response.url)
-            print(f"Respuesta HTTP = {response.status_code}")
-            if response.status_code == 200:
-                data = response.json()
-                print(f"Respuesta JSON = {data}")
-                self.nombre = data.get("name", "Nombre no encontrado")
-                self.email = data.get("email", "Email no encontrado")
-                self.telefono = data.get("phone", "Teléfono no encontrado")
-                self.departamento = data.get("department", "Departamento no encontrado")
-                self.posicion = data.get("position_department", "Posición no encontrada")
-                self.QR = data.get("nameQR", "QR no encontrado")
-                self.avatar = f"https://fichaje.ideasmedioambientales.com/images/employees/empleado_{self.nameQR}.png"
+    def cargar_nombre(self):
+        # try:
+        response = requests.get(
+            f"https://fichaje.ideasmedioambientales.com/api/getQR/{self.nameQR}"
+        )
+        print(response.url)
+        print(f"Respuesta HTTP = {response.status_code}")
+        if response.status_code == 200:
+            data = response.json()
+            print(f"Respuesta JSON = {data}")
+            self.nombre = data.get("name", "Nombre no encontrado")
+            self.email = data.get("email", "Email no encontrado")
+            self.telefono = data.get("phone", "Teléfono no encontrado")
+            self.departamento = data.get("department", "Departamento no encontrado")
+            self.posicion = data.get("position_department", "Posición no encontrada")
+            self.QR = data.get("nameQR", "QR no encontrado")
+            self.avatar = f"https://fichaje.ideasmedioambientales.com/images/employees/empleado_{self.nameQR}.png"
 
-            else:
-                self.nombre = f"Error HTTP {response.status_code}"
-                self.email = f"Error HTTP {response.status_code}"
-                self.telefono = f"Error HTTP {response.status_code}"
-                self.departamento = f"Error HTTP {response.status_code}"
-                self.posicion = f"Error HTTP {response.status_code}"
-                self.avatar = f"Error HTTP {response.status_code}"
-        except Exception as e:
-            print(f"Excepción al cargar: {e}")
-            self.nombre = "Error al cargar"
-            self.email = "Error al cargar"
-            self.telefono = "Error al cargar"
-            self.departamento = "Error al cargar"
-            self.posicion = "Error al cargar"
+        else:
+            self.nombre = f"Error HTTP {response.status_code}"
+            self.email = f"Error HTTP {response.status_code}"
+            self.telefono = f"Error HTTP {response.status_code}"
+            self.departamento = f"Error HTTP {response.status_code}"
+            self.posicion = f"Error HTTP {response.status_code}"
+            self.avatar = f"Error HTTP {response.status_code}"
+        # except Exception as e:
+        #     print(f"Excepción al cargar: {e}")
+        #     self.nombre = "Error al cargar"
+        #     self.email = "Error al cargar"
+        #     self.telefono = "Error al cargar"
+        #     self.departamento = "Error al cargar"
+        #     self.posicion = "Error al cargar"
             
 def tarjeta():
     return rx.box(

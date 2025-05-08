@@ -10,6 +10,23 @@ import NextHead from "next/head"
 
 
 
+export function Text_4cc7ffa2f94cbcfd226a283b082bb538 () {
+  
+  const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
+
+
+
+
+
+  
+  return (
+    <RadixThemesText as={"p"} css={({ ["fontSize"] : "22px", ["fontWeight"] : "bold", ["color"] : "#3C403E", ["marginTop"] : "10px" })}>
+
+{reflex___state____state__qr___qr____estado.nombre}
+</RadixThemesText>
+  )
+}
+
 export function Img_7cd87397767f7ef062fb5ea1df190754 () {
   
   const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
@@ -21,40 +38,6 @@ export function Img_7cd87397767f7ef062fb5ea1df190754 () {
   
   return (
     <img css={({ ["borderRadius"] : "10px", ["width"] : "180px", ["height"] : "180px", ["objectFit"] : "cover", ["border"] : "3px solid #86A789", ["boxShadow"] : "md" })} src={reflex___state____state__qr___qr____estado.avatar}/>
-  )
-}
-
-export function Text_633166697e2626cd45872e2a5afb3957 () {
-  
-  const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
-
-
-
-
-
-  
-  return (
-    <RadixThemesText as={"p"} css={({ ["fontSize"] : "16px", ["color"] : "#3C403E" })}>
-
-{reflex___state____state__qr___qr____estado.telefono}
-</RadixThemesText>
-  )
-}
-
-export function Text_19bb880e3b3ee07d1ea7e5e0c014149e () {
-  
-  const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
-
-
-
-
-
-  
-  return (
-    <RadixThemesText as={"p"}>
-
-{reflex___state____state__qr___qr____estado.posicion}
-</RadixThemesText>
   )
 }
 
@@ -75,6 +58,23 @@ export function Link_effb4bc4dbfaa80fd7e376ae28e6748d () {
 {"Guardar Contacto"}
 </NextLink>
 </RadixThemesLink>
+  )
+}
+
+export function Text_633166697e2626cd45872e2a5afb3957 () {
+  
+  const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
+
+
+
+
+
+  
+  return (
+    <RadixThemesText as={"p"} css={({ ["fontSize"] : "16px", ["color"] : "#3C403E" })}>
+
+{reflex___state____state__qr___qr____estado.telefono}
+</RadixThemesText>
   )
 }
 
@@ -173,23 +173,6 @@ export function Box_8801916c46984de73077033fb14986e4 () {
   )
 }
 
-export function Text_4cc7ffa2f94cbcfd226a283b082bb538 () {
-  
-  const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
-
-
-
-
-
-  
-  return (
-    <RadixThemesText as={"p"} css={({ ["fontSize"] : "22px", ["fontWeight"] : "bold", ["color"] : "#3C403E", ["marginTop"] : "10px" })}>
-
-{reflex___state____state__qr___qr____estado.nombre}
-</RadixThemesText>
-  )
-}
-
 export function Text_fc2c866d0e306f54faf0682ec930cd68 () {
   
   const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
@@ -203,6 +186,23 @@ export function Text_fc2c866d0e306f54faf0682ec930cd68 () {
     <RadixThemesText as={"p"} css={({ ["fontSize"] : "16px", ["color"] : "#3C403E" })}>
 
 {reflex___state____state__qr___qr____estado.email}
+</RadixThemesText>
+  )
+}
+
+export function Text_19bb880e3b3ee07d1ea7e5e0c014149e () {
+  
+  const reflex___state____state__qr___qr____estado = useContext(StateContexts.reflex___state____state__qr___qr____estado)
+
+
+
+
+
+  
+  return (
+    <RadixThemesText as={"p"}>
+
+{reflex___state____state__qr___qr____estado.posicion}
 </RadixThemesText>
   )
 }
